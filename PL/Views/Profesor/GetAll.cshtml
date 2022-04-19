@@ -1,0 +1,42 @@
+﻿@model ML.Profesor
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Profesor</h2>
+
+
+@*<div class="row">*@
+<div style="float:right;">
+    @Html.ActionLink("Agregar", "Form", "Profesor", htmlAttributes: new { @class = "btn btn-success" })
+</div>
+<table class="table table-bordered table-responsive">
+    <thead>
+        <tr>
+            <td>Editar</td>
+            <td class="hidden">IdProfesor</td>
+            <td>Nombre</td>
+            <td>ApellidoPaterno</td>
+            <td>ApellidoMaterno</td>
+            <td>Eliminar</td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ML.Profesor profesor in Model.Profesores)
+        {
+            <tr>
+                <td><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Profesor", new { IdProfesor = profesor.IdProfesor })"></a></td>
+                <td class="hidden">@profesor.IdProfesor</td>
+                <td>@profesor.Nombre</td>
+                <td>@profesor.ApellidoPaterno</td>
+                <td>@profesor.ApellidoMaterno</td>
+
+                <td><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Profesor", new { IdProfesor = profesor.IdProfesor })" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>

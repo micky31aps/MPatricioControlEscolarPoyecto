@@ -1,0 +1,4 @@
+C:\Users\digis\Documents\Miguel Angel Patricio Sanchez\MPatricioControlEscolar\DL\bin\Debug\DL.dll
+C:\Users\digis\Documents\Miguel Angel Patricio Sanchez\MPatricioControlEscolar\DL\bin\Debug\DL.pdb
+C:\Users\digis\Documents\Miguel Angel Patricio Sanchez\MPatricioControlEscolar\DL\obj\Debug\DL.dll
+C:\Users\digis\Documents\Miguel Angel Patricio Sanchez\MPatricioControlEscolar\DL\obj\Debug\DL.pdb

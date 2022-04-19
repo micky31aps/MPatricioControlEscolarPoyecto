@@ -1,0 +1,104 @@
+﻿@model ML.AlumnoMateria
+@{
+    ViewBag.Title = "MateriaGetNoAsignada";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 style="text-align:justify">Materias no Asignadas</h2>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <p style="text-align:justify">Seleccione la materia que desea agregar.</p>
+    </div>
+</div>
+
+<div class="row">
+    @using (Html.BeginForm("GetMateriasNoAsignadas", "AlumnoMateria", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group hidden">
+            @Html.LabelFor(model => model.Alumno.IdAlumno, new { @class = "control-label col-md-2 hidden" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Alumno.IdAlumno, new { @class = "form-control hidden", @readonly = true })
+                @Html.ValidationMessageFor(model => model.Alumno.IdAlumno)
+            </div>
+        </div>
+        <div class="form-group">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Alumno.Nombre)
+                                @Html.TextBoxFor(model => model.Alumno.Nombre, new { @class = "form-control",@id ="txtNombre", @autocomplete = "off"})
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Alumno.ApellidoPaterno)
+                                @Html.TextBoxFor(model => model.Alumno.ApellidoPaterno, new { @class = "form-control", @id = "txtApellidoPaterno", @autocomplete = "off" })
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Alumno.ApellidoMaterno)
+                                @Html.TextBoxFor(model => model.Alumno.ApellidoMaterno, new { @class = "form-control", @id = "txtApellidoMaterno", @autocomplete = "off" })
+                            </div>
+                        </div>
+
+        <br />
+        <div class="row" style="padding-top:30px">
+            <div class="col-md-12">
+                <br />
+                @if (Model.AlumnoMaterias.Count > 0)
+                {
+                <table class="table table-bordered">
+                    <tr>
+                        <th class="text-center">
+                            Selecciona
+                        </th>
+                        <th class="text-center " scope="col">
+                            Nombre
+                        </th>
+                        <th class="text-left" scope="col">
+                            Costo
+                        </th>
+                    </tr>
+                    @foreach (ML.AlumnoMateria alumnomateria in Model.AlumnoMaterias)
+                    {
+                        <tr>
+                            <td class="text-center hidden">
+                                @alumnomateria.Materia.IdMateria
+                            </td>
+                            <td class="text-center">
+                                <input type="checkbox" value="@alumnomateria.Materia.IdMateria" name="AlumnoMaterias">
+                            </td>
+                            <td class="text-left">
+                                @alumnomateria.Materia.Nombre
+                            </td>
+                            <td class="text-left">
+                                @alumnomateria.Materia.Costo
+                            </td>
+                        </tr>
+                    }
+                </table>
+                }
+                else
+                {
+                    <div class="text-center">
+                        <div class="alert alert-danger" role="alert">
+                            No hay Materias que asignar al alumno
+                        </div>
+                    </div>
+                }
+                <div class="form-group col-md-12">
+                    <div class="text-center">
+                        <input class="btn btn-success" type="submit" value="Guardar" />
+                        <a class="btn btn-danger" href="@Url.Action("MateriaGetAsignada", "AlumnoMateria", new { IdAlumno = @Model.Alumno.IdAlumno })">Regresar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

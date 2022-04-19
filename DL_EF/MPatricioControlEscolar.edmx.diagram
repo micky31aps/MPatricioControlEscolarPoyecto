@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eea608defdca46408ca56c11152af0c9" Name="Diagram1">
+        <EntityTypeShape EntityType="MPatricioControlEscolarModel.Materia" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPatricioControlEscolarModel.AlumnoMateria" Width="1.5" PointX="3" PointY="4.125" />
+        <AssociationConnector Association="MPatricioControlEscolarModel.FK__AlumnoMat__IdMat__1ED998B2" />
+        <EntityTypeShape EntityType="MPatricioControlEscolarModel.Profesor" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MPatricioControlEscolarModel.ProfesorMateria" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="MPatricioControlEscolarModel.FK__ProfesorM__IdMat__4222D4EF" />
+        <AssociationConnector Association="MPatricioControlEscolarModel.FK__ProfesorM__IdPro__412EB0B6" />
+        <EntityTypeShape EntityType="MPatricioControlEscolarModel.Alumno" Width="1.5" PointX="5.375" PointY="1" />
+        <AssociationConnector Association="MPatricioControlEscolarModel.FK__AlumnoMat__IdAlu__1DE57479" />
+        <EntityTypeShape EntityType="MPatricioControlEscolarModel.ProfesorMateria1" Width="1.5" PointX="6" PointY="5.375" />
+        <AssociationConnector Association="MPatricioControlEscolarModel.FK__ProfesorM__IdMat__37A5467C" />
+        <AssociationConnector Association="MPatricioControlEscolarModel.FK__ProfesorM__IdPro__36B12243" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MPatricioControlEscolarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Materia">
+    <Key>
+      <PropertyRef Name="IdMateria" />
+    </Key>
+    <Property Name="IdMateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Costo" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="AlumnoMaterias" Relationship="MPatricioControlEscolarModel.FK__AlumnoMat__IdMat__1ED998B2" FromRole="Materia" ToRole="AlumnoMateria" />
+    <NavigationProperty Name="ProfesorMaterias" Relationship="MPatricioControlEscolarModel.FK__ProfesorM__IdMat__4222D4EF" FromRole="Materia" ToRole="ProfesorMateria" />
+    <NavigationProperty Name="ProfesorMaterias1" Relationship="MPatricioControlEscolarModel.FK__ProfesorM__IdMat__37A5467C" FromRole="Materia" ToRole="ProfesorMateria1" />
+  </EntityType>
+  <EntityContainer Name="MPatricioControlEscolarEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Materias" EntityType="Self.Materia" />
+    <FunctionImport Name="MateriaAdd">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Costo" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="MateriaDelete">
+      <Parameter Name="IdMateria" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="MateriaGetAll" ReturnType="Collection(MPatricioControlEscolarModel.MateriaGetAll_Result)" />
+    <FunctionImport Name="MateriaGetById" ReturnType="Collection(MPatricioControlEscolarModel.MateriaGetById_Result)">
+      <Parameter Name="IdMateria" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="MateriaUpdate">
+      <Parameter Name="IdMateria" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Costo" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <EntitySet Name="AlumnoMaterias" EntityType="MPatricioControlEscolarModel.AlumnoMateria" />
+    <AssociationSet Name="FK__AlumnoMat__IdMat__1ED998B2" Association="MPatricioControlEscolarModel.FK__AlumnoMat__IdMat__1ED998B2">
+      <End Role="Materia" EntitySet="Materias" />
+      <End Role="AlumnoMateria" EntitySet="AlumnoMaterias" />
+    </AssociationSet>
+    <FunctionImport Name="MateriaGetByIdAlumno" ReturnType="Collection(MPatricioControlEscolarModel.MateriaGetByIdAlumno_Result)">
+      <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="MateriasGetAsignadas" ReturnType="Collection(MPatricioControlEscolarModel.MateriasGetAsignadas_Result)">
+      <Parameter Name="IdMateriaAlumno" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="MateriasGetNoAsignadas" ReturnType="Collection(MPatricioControlEscolarModel.MateriasGetNoAsignadas_Result)">
+      <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AlumnoMateriaAdd">
+      <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
+      <Parameter Name="IdMateria" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AlumnoMateriaDelete">
+      <Parameter Name="IdAlumnoMateria" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Profesors" EntityType="MPatricioControlEscolarModel.Profesor" />
+    <EntitySet Name="ProfesorMaterias" EntityType="MPatricioControlEscolarModel.ProfesorMateria" />
+    <AssociationSet Name="FK__ProfesorM__IdMat__4222D4EF" Association="MPatricioControlEscolarModel.FK__ProfesorM__IdMat__4222D4EF">
+      <End Role="Materia" EntitySet="Materias" />
+      <End Role="ProfesorMateria" EntitySet="ProfesorMaterias" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProfesorM__IdPro__412EB0B6" Association="MPatricioControlEscolarModel.FK__ProfesorM__IdPro__412EB0B6">
+      <End Role="Profesor" EntitySet="Profesors" />
+      <End Role="ProfesorMateria" EntitySet="ProfesorMaterias" />
+    </AssociationSet>
+    <FunctionImport Name="ProfesorAdd">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+      <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ProfesorDelete">
+      <Parameter Name="IdProfesor" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ProfesorGetAll" ReturnType="Collection(MPatricioControlEscolarModel.ProfesorGetAll_Result)" />
+    <FunctionImport Name="ProfesorGetById" ReturnType="Collection(MPatricioControlEscolarModel.ProfesorGetById_Result)">
+      <Parameter Name="IdProfesor" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ProfesorMateriaAdd">
+      <Parameter Name="IdProfesor" Mode="In" Type="Int32" />
+      <Parameter Name="IdMateria" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ProfesorMateriaDelete">
+      <Parameter Name="IdProfesorMateria" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ProfesorMateriaGetById" ReturnType="Collection(MPatricioControlEscolarModel.ProfesorMateriaGetById_Result)">
+      <Parameter Name="IdProfesorMateria" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ProfesorUpdate">
+      <Parameter Name="IdProfesor" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+      <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="MateriaGetByIdProfesor" ReturnType="Collection(MPatricioControlEscolarModel.MateriaGetByIdProfesor_Result)">
+      <Parameter Name="IdProfesor" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="MateriasGetNoAsignadasProfesor" ReturnType="Collection(MPatricioControlEscolarModel.MateriasGetNoAsignadasProfesor_Result)">
+      <Parameter Name="IdProfesor" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Alumnoes" EntityType="MPatricioControlEscolarModel.Alumno" />
+    <AssociationSet Name="FK__AlumnoMat__IdAlu__1DE57479" Association="MPatricioControlEscolarModel.FK__AlumnoMat__IdAlu__1DE57479">
+      <End Role="Alumno" EntitySet="Alumnoes" />
+      <End Role="AlumnoMateria" EntitySet="AlumnoMaterias" />
+    </AssociationSet>
+    <FunctionImport Name="AlumnoAdd">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+      <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+      <Parameter Name="CURP" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Imagen" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="AlumnoDelete">
+      <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AlumnoGetAll" ReturnType="Collection(MPatricioControlEscolarModel.AlumnoGetAll_Result1)" />
+    <FunctionImport Name="AlumnoGetById" ReturnType="Collection(MPatricioControlEscolarModel.AlumnoGetById_Result1)">
+      <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AlumnoUpdate">
+      <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+      <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+      <Parameter Name="CURP" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Imagen" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="AlumnoMateriaGetAll" ReturnType="Collection(MPatricioControlEscolarModel.AlumnoMateriaGetAll_Result)" />
+    <FunctionImport Name="AlumnoMateriaGetById" ReturnType="Collection(MPatricioControlEscolarModel.AlumnoMateriaGetById_Result)">
+      <Parameter Name="IdAlumnoMateria" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="ProfesorMateria1" EntityType="MPatricioControlEscolarModel.ProfesorMateria1" />
+    <AssociationSet Name="FK__ProfesorM__IdMat__37A5467C" Association="MPatricioControlEscolarModel.FK__ProfesorM__IdMat__37A5467C">
+      <End Role="Materia" EntitySet="Materias" />
+      <End Role="ProfesorMateria1" EntitySet="ProfesorMateria1" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProfesorM__IdPro__36B12243" Association="MPatricioControlEscolarModel.FK__ProfesorM__IdPro__36B12243">
+      <End Role="Profesor" EntitySet="Profesors" />
+      <End Role="ProfesorMateria1" EntitySet="ProfesorMateria1" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="MateriaGetAll_Result">
+    <Property Type="Int32" Name="IdMateria" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Costo" Nullable="true" Precision="18" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="MateriaGetById_Result">
+    <Property Type="Int32" Name="IdMateria" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Costo" Nullable="true" Precision="18" Scale="2" />
+  </ComplexType>
+  <EntityType Name="AlumnoMateria">
+    <Key>
+      <PropertyRef Name="IdAlumnoMateria" />
+    </Key>
+    <Property Name="IdAlumnoMateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdAlumno" Type="Int32" />
+    <Property Name="IdMateria" Type="Int32" />
+    <NavigationProperty Name="Materia" Relationship="MPatricioControlEscolarModel.FK__AlumnoMat__IdMat__1ED998B2" FromRole="AlumnoMateria" ToRole="Materia" />
+    <NavigationProperty Name="Alumno" Relationship="MPatricioControlEscolarModel.FK__AlumnoMat__IdAlu__1DE57479" FromRole="AlumnoMateria" ToRole="Alumno" />
+  </EntityType>
+  <Association Name="FK__AlumnoMat__IdMat__1ED998B2">
+    <End Type="MPatricioControlEscolarModel.Materia" Role="Materia" Multiplicity="0..1" />
+    <End Type="MPatricioControlEscolarModel.AlumnoMateria" Role="AlumnoMateria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materia">
+        <PropertyRef Name="IdMateria" />
+      </Principal>
+      <Dependent Role="AlumnoMateria">
+        <PropertyRef Name="IdMateria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="MateriaGetByIdAlumno_Result">
+    <Property Type="Int32" Name="IdAlumnoMateria" Nullable="false" />
+    <Property Type="Int32" Name="IdAlumno" Nullable="true" />
+    <Property Type="String" Name="AlumnoNombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="IdMateria" Nullable="true" />
+    <Property Type="String" Name="MateriaNombre" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Costo" Nullable="true" Precision="18" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="MateriasGetAsignadas_Result">
+    <Property Type="Int32" Name="IdAlumnoMateria" Nullable="false" />
+    <Property Type="Int32" Name="IdMateria" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Costo" Nullable="true" Precision="18" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="MateriasGetNoAsignadas_Result">
+    <Property Type="Int32" Name="IdMateria" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Costo" Nullable="true" Precision="18" Scale="2" />
+  </ComplexType>
+  <EntityType Name="Profesor">
+    <Key>
+      <PropertyRef Name="IdProfesor" />
+    </Key>
+    <Property Name="IdProfesor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ApellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ApellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProfesorMaterias" Relationship="MPatricioControlEscolarModel.FK__ProfesorM__IdPro__412EB0B6" FromRole="Profesor" ToRole="ProfesorMateria" />
+    <NavigationProperty Name="ProfesorMaterias1" Relationship="MPatricioControlEscolarModel.FK__ProfesorM__IdPro__36B12243" FromRole="Profesor" ToRole="ProfesorMateria1" />
+  </EntityType>
+  <EntityType Name="ProfesorMateria">
+    <Key>
+      <PropertyRef Name="IdProfesorMateria" />
+    </Key>
+    <Property Name="IdProfesorMateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdProfesor" Type="Int32" />
+    <Property Name="IdMateria" Type="Int32" />
+    <NavigationProperty Name="Materia" Relationship="MPatricioControlEscolarModel.FK__ProfesorM__IdMat__4222D4EF" FromRole="ProfesorMateria" ToRole="Materia" />
+    <NavigationProperty Name="Profesor" Relationship="MPatricioControlEscolarModel.FK__ProfesorM__IdPro__412EB0B6" FromRole="ProfesorMateria" ToRole="Profesor" />
+  </EntityType>
+  <Association Name="FK__ProfesorM__IdMat__4222D4EF">
+    <End Type="MPatricioControlEscolarModel.Materia" Role="Materia" Multiplicity="0..1" />
+    <End Type="MPatricioControlEscolarModel.ProfesorMateria" Role="ProfesorMateria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materia">
+        <PropertyRef Name="IdMateria" />
+      </Principal>
+      <Dependent Role="ProfesorMateria">
+        <PropertyRef Name="IdMateria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProfesorM__IdPro__412EB0B6">
+    <End Type="MPatricioControlEscolarModel.Profesor" Role="Profesor" Multiplicity="0..1" />
+    <End Type="MPatricioControlEscolarModel.ProfesorMateria" Role="ProfesorMateria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profesor">
+        <PropertyRef Name="IdProfesor" />
+      </Principal>
+      <Dependent Role="ProfesorMateria">
+        <PropertyRef Name="IdProfesor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="ProfesorGetAll_Result">
+    <Property Type="Int32" Name="IdProfesor" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="ProfesorGetById_Result">
+    <Property Type="Int32" Name="IdProfesor" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="ProfesorMateriaGetById_Result">
+    <Property Type="Int32" Name="IdProfesorMateria" Nullable="false" />
+    <Property Type="Int32" Name="IdProfesor" Nullable="true" />
+    <Property Type="String" Name="AlumnoNombre" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="IdMateria" Nullable="true" />
+    <Property Type="String" Name="MateriaNombre" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="MateriaGetByIdProfesor_Result">
+    <Property Type="Int32" Name="IdProfesorMateria" Nullable="false" />
+    <Property Type="String" Name="MateriaNombre" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Costo" Nullable="true" Precision="18" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="MateriasGetNoAsignadasProfesor_Result">
+    <Property Type="Int32" Name="IdMateria" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Costo" Nullable="true" Precision="18" Scale="2" />
+  </ComplexType>
+  <EntityType Name="Alumno">
+    <Key>
+      <PropertyRef Name="IdAlumno" />
+    </Key>
+    <Property Name="IdAlumno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ApellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ApellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CURP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+    <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="AlumnoMaterias" Relationship="MPatricioControlEscolarModel.FK__AlumnoMat__IdAlu__1DE57479" FromRole="Alumno" ToRole="AlumnoMateria" />
+  </EntityType>
+  <Association Name="FK__AlumnoMat__IdAlu__1DE57479">
+    <End Type="MPatricioControlEscolarModel.Alumno" Role="Alumno" Multiplicity="0..1" />
+    <End Type="MPatricioControlEscolarModel.AlumnoMateria" Role="AlumnoMateria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumno">
+        <PropertyRef Name="IdAlumno" />
+      </Principal>
+      <Dependent Role="AlumnoMateria">
+        <PropertyRef Name="IdAlumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="AlumnoGetAll_Result">
+    <Property Type="Int32" Name="IdAlumno" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CURP" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="Imagen" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="AlumnoGetById_Result">
+    <Property Type="Int32" Name="IdAlumno" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CURP" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="Imagen" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="AlumnoGetAll_Result1">
+    <Property Type="Int32" Name="IdAlumno" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CURP" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="Imagen" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="AlumnoGetById_Result1">
+    <Property Type="Int32" Name="IdAlumno" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CURP" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="Imagen" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="AlumnoMateriaGetAll_Result">
+    <Property Type="Int32" Name="IdAlumnoMateria" Nullable="false" />
+    <Property Type="Int32" Name="IdAlumno" Nullable="true" />
+    <Property Type="String" Name="AlumnoNombre" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="IdMateria" Nullable="true" />
+    <Property Type="String" Name="MateriaNombre" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="AlumnoMateriaGetById_Result">
+    <Property Type="Int32" Name="IdAlumnoMateria" Nullable="false" />
+    <Property Type="Int32" Name="IdAlumno" Nullable="true" />
+    <Property Type="String" Name="AlumnoNombre" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="IdMateria" Nullable="true" />
+    <Property Type="String" Name="MateriaNombre" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="ProfesorMateria1">
+    <Key>
+      <PropertyRef Name="IdProfesorMateria" />
+    </Key>
+    <Property Name="IdProfesorMateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdProfesor" Type="Int32" />
+    <Property Name="IdMateria" Type="Int32" />
+    <NavigationProperty Name="Materia" Relationship="MPatricioControlEscolarModel.FK__ProfesorM__IdMat__37A5467C" FromRole="ProfesorMateria1" ToRole="Materia" />
+    <NavigationProperty Name="Profesor" Relationship="MPatricioControlEscolarModel.FK__ProfesorM__IdPro__36B12243" FromRole="ProfesorMateria1" ToRole="Profesor" />
+  </EntityType>
+  <Association Name="FK__ProfesorM__IdMat__37A5467C">
+    <End Type="MPatricioControlEscolarModel.Materia" Role="Materia" Multiplicity="0..1" />
+    <End Type="MPatricioControlEscolarModel.ProfesorMateria1" Role="ProfesorMateria1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materia">
+        <PropertyRef Name="IdMateria" />
+      </Principal>
+      <Dependent Role="ProfesorMateria1">
+        <PropertyRef Name="IdMateria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProfesorM__IdPro__36B12243">
+    <End Type="MPatricioControlEscolarModel.Profesor" Role="Profesor" Multiplicity="0..1" />
+    <End Type="MPatricioControlEscolarModel.ProfesorMateria1" Role="ProfesorMateria1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profesor">
+        <PropertyRef Name="IdProfesor" />
+      </Principal>
+      <Dependent Role="ProfesorMateria1">
+        <PropertyRef Name="IdProfesor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
